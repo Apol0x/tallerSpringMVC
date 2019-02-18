@@ -16,8 +16,8 @@ public class BillService {
 			return this.billRepository.findAll();
 		}
 
-		public Bill findById(int id) {
-			return this.billRepository.findById(id);
+		public Bill findOne(int id) {
+			return this.billRepository.findOne(id);
 		}
 		
 		public Bill saveBill(Bill b) {

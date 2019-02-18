@@ -13,7 +13,7 @@ public interface BillRepository extends JpaRepository<Bill, Integer>{
 	public List<Bill> getBillByVisitNotNull();
 	public List<Bill> getBillByVisitNull();
     public List<Bill> findAll();
-    public Bill findById(int id);
+    public Bill findOne(int id);
     public Bill save(Bill b);
     public void delete(int id);
 

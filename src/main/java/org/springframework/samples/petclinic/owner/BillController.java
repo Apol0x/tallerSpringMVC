@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/bills", method = RequestMethod.GET)
+@RequestMapping(value = "/bills")
 public class BillController {
 	
 	@Autowired
@@ -31,9 +31,9 @@ public class BillController {
 	
 	@RequestMapping(value = "/{billId}", method = RequestMethod.GET)
 	@ResponseBody
-	public Bill getBillById(@PathVariable(value = "billId") int billId) {
-		Bill bill = billService.findById(billId);
-		return bill;
+	public Bill findOne(@PathVariable(value = "billId") int billId) {
+		return this.billService.findOne(billId);
+		
 	}
 	
 	@RequestMapping(value = "/", method = RequestMethod.POST)
@@ -50,7 +50,7 @@ public class BillController {
 	@RequestMapping(value = "/{billId}", method = RequestMethod.PUT)
 	@ResponseBody
 	public ResponseEntity<Bill> update(@PathVariable(value = "billId") int billId, @RequestBody Bill b) {
-		Bill b2 = billService.findById(billId);
+		Bill b2 = billService.findOne(billId);
 		if(b2 != null) {
 			b.setId(billId);
 			billService.saveBill(b);
@@ -68,7 +68,7 @@ public class BillController {
 	@RequestMapping(value = "/{billId}", method = RequestMethod.DELETE)
 	@ResponseBody
 	public void delete(@PathVariable(value = "billId") int billId) {
-		Bill b = billService.findById(billId);
+		Bill b = billService.findOne(billId);
 		if( b != null) {
 			billService.deleteBill(billId);
 	}
